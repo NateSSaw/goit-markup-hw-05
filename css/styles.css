@@ -35,7 +35,6 @@
 
 
 body {
-    padding-top: 80px;
 
     background-color: var(--focus-color);
     color: var(--primary-text-color);
@@ -44,6 +43,7 @@ body {
     font-size: 14px;
     letter-spacing: 0.03em;
 }
+
 
 /* Шапка */
 
@@ -241,47 +241,7 @@ ul {
     background-color: var(--button-hover-color);
 }
 
-.backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-}
 
-.backdrop.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.backdrop .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    padding: 8px;
-    
-
-    min-width: 528px;
-    min-height: 581px;
-    background-color: var(--focus-color);
-
-}
-
-.modal .modal-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    margin-left: auto;
-
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    background-color: var(--focus-color);
-}
 
 /* Особливості */
 
@@ -504,8 +464,6 @@ ul {
     fill: var(--focus-color);
 }
 
-
-
 .container.logo-clients {
     padding-top: 94px;
     padding-bottom: 94px;
@@ -638,6 +596,78 @@ address .contacts {
     background-color: var(--accent-color);
 }
 
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.2);
+
+    opacity: 1;
+    transition: opacity var(--time-animation) var(--cubic);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+}
+
+.backdrop .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+
+    padding: 8px;
+
+
+    min-width: 528px;
+    min-height: 581px;
+    background-color: var(--focus-color);
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: transform var(--time-animation) var(--cubic),
+    opacity var(--time-animation) var(--cubic);
+
+}
+
+.modal .modal-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    cursor: pointer;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: var(--focus-color);
+
+    transition: background-color var(--time-animation) var(--cubic);
+}
+
+.modal .modal-button:hover,
+.modal .modal-button:focus {
+    background-color: var(--accent-color);
+}
+
+
+.no-scroll {
+    overflow: hidden;
+}
+
+
 /* Стилі Портфоліо */
 
 .section.portfolio {
@@ -706,18 +736,23 @@ address .contacts {
 }
 
 .cards .link {
-    position: relative;
 
     display: block;
     text-decoration: none;
     transition: box-shadow var(--time-animation) var(--cubic);
 }
 
+.link .animation {
+    position: relative;
+    overflow: hidden;
+    
+}
+
 .link .link-animation {
     position: absolute;
-    width: 100%;
-    height: 294px;
     top: 0;
+    left: 0;
+    height: 100%;
 
     margin-top: 0;
     margin-bottom: 0;
@@ -727,15 +762,20 @@ address .contacts {
     line-height: 1.56;
     color: var(--focus-color);
     background-color: rgba(33, 150, 243, 0.9);
-    overflow: hidden;
 
-    opacity: 0;
+    transform: translateY(100%);
+    transition: transform var(--time-animation) var(--cubic);
 
 }
 
 .cards .link:hover,
 .cards .link:focus {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cards .link:hover .link-animation,
+.cards .link:focus .link-animation {
+    transform: translateY(0);
 }
 
 .cards img {
