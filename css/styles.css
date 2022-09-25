@@ -126,7 +126,7 @@ ul {
 
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -1px;
     display: block;
     width: 100%;
     height: 4px;
@@ -392,6 +392,7 @@ ul {
 .staff .card {
     box-shadow: 0px 1px 3px var(--box-shadow-three), 0px 1px 1px var(--box-shadow-four), 0px 2px 1px var(--box-shadow-five);
     border-radius: 0px 0px 4px 4px;
+    background-color: var(--focus-color);
 }
 
 .staff .card + .card {
@@ -427,7 +428,7 @@ ul {
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
 
     font-weight: 400;
     font-size: 16px;
@@ -464,11 +465,12 @@ ul {
     fill: var(--focus-color);
 }
 
-.container.logo-clients {
+
+.section.clients-list {
     padding-top: 94px;
     padding-bottom: 94px;
-    width: 1200px;
 }
+
 
 .logo-clients .clients {
     display: flex;
@@ -555,6 +557,15 @@ address .contacts {
     text-decoration: none;
 }
 
+.item .contact {
+    transition: color var(--time-animation) var(--cubic);
+}
+
+.item .contact:hover,
+.item .contact:focus {
+    color: var(--accent-color);
+}
+
 .block-social {
     margin-left: 70px;
 }
@@ -606,17 +617,19 @@ address .contacts {
     background: rgba(0, 0, 0, 0.2);
 
     opacity: 1;
-    transition: opacity var(--time-animation) var(--cubic);
+    transition: opacity var(--time-animation) var(--cubic),
+    visibility var(--time-animation) var(--cubic);
 }
 
 .backdrop.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+        
 }
 
 .backdrop.is-hidden .modal {
-    transform: translate(-50%, -50%) scale(0.2);
+    transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
 }
 
@@ -624,10 +637,8 @@ address .contacts {
     position: absolute;
     top: 50%;
     left: 50%;
-    
 
     padding: 8px;
-
 
     min-width: 528px;
     min-height: 581px;
@@ -653,19 +664,16 @@ address .contacts {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     background-color: var(--focus-color);
+    
 
-    transition: background-color var(--time-animation) var(--cubic);
+    transition: fill var(--time-animation) var(--cubic);
 }
 
 .modal .modal-button:hover,
 .modal .modal-button:focus {
-    background-color: var(--accent-color);
+    fill: var(--accent-color);
 }
 
-
-.no-scroll {
-    overflow: hidden;
-}
 
 
 /* Стилі Портфоліо */
