@@ -645,6 +645,8 @@ address .contacts {
     background-color: var(--focus-color);
     border-radius: 4px;
 
+    z-index: 2;
+
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     transition: transform var(--time-animation) var(--cubic),
